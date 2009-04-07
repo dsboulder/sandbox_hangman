@@ -1,0 +1,23 @@
+<h1>Listing rounds</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Word</th>
+    <th>Status</th>
+    <th># Entries</th>
+  </tr>
+
+<% @rounds.each do |round| %>
+  <tr>
+    <td><%=h round.id %></td>
+    <td><%=h round.word %></td>
+    <td><%=h round.finished ? "Finished" : "Running Iter #{round.iterations}" %></td>
+    <td><%=h round.entries.size %></td>
+    <td><%= link_to 'Show', round %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @algorithm.name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @algorithm.code %>
+</p>
+
+
+<%= link_to 'Edit', edit_algorithm_path(@algorithm) %> |
+<%= link_to 'Back', algorithms_path %>

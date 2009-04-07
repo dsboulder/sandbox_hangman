@@ -1,0 +1,17 @@
+<p>
+  <b>Word:</b>
+  <%=h @entry.word.split("").inspect %>
+</p>
+
+<p>
+  <b>Guesses:</b>
+  <ul>
+    <% @entry.guesses.each do |guess| %>
+      <li><%=h guess %></li>
+    <% end %>
+  </ul>
+</p>
+
+
+<%= link_to 'Back', rounds_path %>
+

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  round_id: 1
+  word_id: 1
+  guesses: MyString
+
+two:
+  round_id: 1
+  word_id: 1
+  guesses: MyString
