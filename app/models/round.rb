@@ -21,7 +21,7 @@ class Round < ActiveRecord::Base
   def iterate!
     return if self.finished?
     entries.unfinished.each do |entry|
-      # run user uploaded code?
+      entry.algorithm.run_code(entry)
       entry.finish! if entry.word == self.word || entry.wrong_guesses >= 9
       entry.finish!(true) unless entry.guessed
     end

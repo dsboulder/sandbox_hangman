@@ -4,6 +4,9 @@ class Entry < ActiveRecord::Base
 
   attr_reader :guessed
 
+  acts_as_wrapped_class :methods => [:word, :guesses, :all_words, :guess!]
+
+
   def word
     round.word.split("").collect{|l| guesses.include?(l) ? l : " "}.join
   end
