@@ -7,6 +7,6 @@ desc "Iterate every 10 seconds"
 task :keep_iterating do
   while(true)
     system("rake iterate")
-    sleep 10
+    sleep ENV["DELAY"] ? ENV["DELAY"].to_i : 10.0
   end
 end
