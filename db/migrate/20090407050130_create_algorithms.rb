@@ -3,8 +3,8 @@ class CreateAlgorithms < ActiveRecord::Migration
     create_table :algorithms do |t|
       t.string :name
       t.text :code
-      t.integer :games
-      t.integer :score
+      t.integer :games, :default => 0, :null => false
+      t.integer :score, :default => 0, :null => false
 
       t.timestamps
     end

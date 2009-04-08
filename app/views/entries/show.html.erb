@@ -1,6 +1,26 @@
 <p>
+  <b>Algorithm:</b>
+  <%=link_to h(@entry.algorithm.name), @entry.algorithm %>
+</p>
+
+<p>
   <b>Word:</b>
   <%=h @entry.word.split("").inspect %>
+</p>
+
+<p>
+  <b>Wrong guesses:</b>
+  <%=h @entry.wrong_guesses %>
+</p>
+
+<p>
+  <b>Finished:</b>
+  <%=h @entry.finished?.inspect %>
+</p>
+
+<p>
+  <b>Disqualified:</b>
+  <%=h @entry.disqualified?.inspect %>
 </p>
 
 <p>

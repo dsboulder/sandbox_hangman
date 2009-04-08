@@ -4,6 +4,7 @@ class CreateRounds < ActiveRecord::Migration
       t.string :word, :null => false, :default => ""
       t.integer :iterations, :default => 0
       t.boolean :finished, :default => false, :null => false
+      t.text :log, :default => ""
       t.timestamps
     end
   end

@@ -4,12 +4,16 @@
   <tr>
     <th>Name</th>
     <th>Code</th>
+    <th>Games</th>
+    <th>Avg. Score</th>
   </tr>
 
 <% @algorithms.each do |algorithm| %>
   <tr>
     <td><%=h algorithm.name %></td>
-    <td><%=h algorithm.code %></td>
+    <td><code><%=h truncate(algorithm.code, 50) %></code></td>
+    <td><%= algorithm.games %></td>
+    <td><%= algorithm.games.zero? ? "" : algorithm.score / algorithm.games.to_f %></td>
     <td><%= link_to 'Show', algorithm %></td>
     <td><%= link_to 'Edit', edit_algorithm_path(algorithm) %></td>
   </tr>

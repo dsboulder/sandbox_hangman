@@ -2,7 +2,7 @@ class AlgorithmsController < ApplicationController
   # GET /algorithms
   # GET /algorithms.xml
   def index
-    @algorithms = Algorithm.all
+    @algorithms = Algorithm.best_first
 
     respond_to do |format|
       format.html # index.html.erb

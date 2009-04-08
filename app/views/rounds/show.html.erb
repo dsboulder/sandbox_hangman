@@ -9,13 +9,25 @@
 </p>
 
 <p>
+  <b>Finished:</b>
+  <%=h @round.finished.inspect %>
+</p>
+
+<p>
   <b>Entries:</b>
   <ul>
     <% @round.entries.each do |entry| %>
-      <li><%= link_to h(entry.algorithm.name), entry %>
+      <li><%= link_to h(entry.algorithm.name), entry %> (<%= entry.wrong_guesses %> wrong guesses)</li>
     <% end %>
   </ul>
 </p>
+
+<p>
+  <b>Log:</b>
+  <pre>
+    <%=h @round.log %>
+  </pre>
+</p> 
 
 
 <%= link_to 'Back', rounds_path %>
