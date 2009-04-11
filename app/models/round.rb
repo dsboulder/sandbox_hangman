@@ -13,6 +13,10 @@ class Round < ActiveRecord::Base
   end
 
   def self.iterate_or_create!
+    if Algorithm.count.zero?
+      puts "No algorithms yet"
+      return
+    end
     last_round = Round.last
     last_round = Round.create! if !last_round || last_round.finished?
     last_round.iterate!
