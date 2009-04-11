@@ -13,6 +13,7 @@ class RoundsController < ApplicationController
   # GET /rounds/1
   # GET /rounds/1.xml
   def show
+    params[:id] = Round.last.id if params[:id] == "latest"  
     @round = Round.find(params[:id])
 
     respond_to do |format|

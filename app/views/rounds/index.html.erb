@@ -1,11 +1,12 @@
 <h1>Listing rounds</h1>
 
-<table>
+<table cellspacing="0">
   <tr>
     <th>ID</th>
     <th>Word</th>
     <th>Status</th>
-    <th># Entries</th>
+    <th>Successful Algorithms</th>
+    <th>Failed Algorithms</th>
   </tr>
 
 <% @rounds.each do |round| %>
@@ -13,7 +14,8 @@
     <td><%=h round.id %></td>
     <td><%=h round.word %></td>
     <td><%=h round.finished ? "Finished" : "Running Iter #{round.iterations}" %></td>
-    <td><%=h round.entries.size %></td>
+    <td><%=h round.entries.won.size %></td>
+    <td><%=h round.entries.lost.size %></td>
     <td><%= link_to 'Show', round %></td>
   </tr>
 <% end %>
@@ -21,4 +23,6 @@
 
 <br />
 
+<%= link_to "Latest round", round_path("latest") %>
+<br />
 <%= link_to "Algorithms", algorithms_path %>

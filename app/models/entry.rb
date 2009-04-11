@@ -2,9 +2,13 @@ class Entry < ActiveRecord::Base
   belongs_to :algorithm
   belongs_to :round
 
+  named_scope :won, :conditions => ["finished = ? AND wrong_guesses < 9 AND disqualified = ?", true, false]
+  named_scope :lost, :conditions => ["finished = ? AND (wrong_guesses = 9 OR disqualified = ?)", true, true]
+
   attr_reader :guessed
 
   acts_as_wrapped_class :methods => [:word, :guesses, :guess!, :all_words]
+
 
   def word
     round.word.split("").collect{|l| guesses.include?(l) ? l : " "}.join
@@ -30,7 +34,7 @@ class Entry < ActiveRecord::Base
   end
 
   def guess!(char)
-    raise "Must be only 1 string character" unless char.class == String && char.length == 1
+    raise "Must be only 1 string character, got #{char.class}" unless char.class == String && char.length == 1
     if @guessed
       raise "Can only guess once!" 
     end

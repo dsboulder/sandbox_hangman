@@ -1,4 +1,6 @@
 class Algorithm < ActiveRecord::Base
+  has_many :entries
+
   attr_protected :games
   attr_protected :score
   attr_protected :password

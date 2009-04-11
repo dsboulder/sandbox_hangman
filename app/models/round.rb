@@ -9,7 +9,7 @@ class Round < ActiveRecord::Base
   after_create :enter_all_algorithms
 
   def self.all_words
-    @all_words ||= File.open("/usr/share/common-words").readlines.collect!{|w| w.strip}.reject!{|w| w.length < 5}
+    @all_words ||= File.open(RAILS_ROOT + "/common-words").readlines.collect!{|w| w.strip}.reject!{|w| w.length < 5}
   end
 
   def self.iterate_or_create!
@@ -21,8 +21,11 @@ class Round < ActiveRecord::Base
   def iterate!
     return if self.finished?
     entries.unfinished.each do |entry|
-      log!(entry.algorithm.name, "Starting code...")
-      entry.algorithm.run_code(entry)
+      begin
+        entry.algorithm.run_code(entry)
+      rescue Exception => e
+        log!(entry.algorithm.name, "Exception: #{e}")
+      end
       entry.finish! if entry.word == self.word || entry.wrong_guesses >= 9
       entry.finish!(true) unless entry.guessed
     end

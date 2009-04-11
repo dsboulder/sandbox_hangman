@@ -4,6 +4,31 @@
 </p>
 
 <p>
+  <b>Author:</b>
+  <%=h @algorithm.author %>
+</p>
+
+<p>
+  <b>Last 50 words won:</b>
+  <br/>
+  <ul>
+    <% @algorithm.entries.won.find(:all, :limit => 50).each do |entry| %>
+      <li><%= link_to entry.round.word, entry.round %> (<%= entry.wrong_guesses %> wrong guesses)</li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <b>Last 50 words lost:</b>
+  <br/>
+  <ul>
+    <% @algorithm.entries.lost.find(:all, :limit => 50).each do |entry| %>
+      <li><%= link_to entry.round.word, entry %> (<%= entry.wrong_guesses %> wrong guesses <%= entry.disqualified? ? "disqualified" : "" %>)</li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
   <b>Code:</b><br/>
   <code><pre><%=h @algorithm.code %></pre></code>
 </p>

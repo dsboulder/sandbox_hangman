@@ -4,6 +4,11 @@
 </p>
 
 <p>
+  <b>Round:</b>
+  <%=link_to h(@entry.round.word), @entry.round %>
+</p>
+
+<p>
   <b>Word:</b>
   <%=h @entry.word.split("").inspect %>
 </p>

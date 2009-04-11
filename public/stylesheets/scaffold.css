@@ -61,3 +61,11 @@ textarea {
   width: 80%;
   height: 200px;
 }
+
+td {
+  border: 1px solid gray;
+}
+td, th {
+  margin: 0;
+  padding: 5px;
+}
