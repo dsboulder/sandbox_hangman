@@ -40,6 +40,7 @@ class AlgorithmsController < ApplicationController
   # POST /algorithms
   # POST /algorithms.xml
   def create
+    raise "Go away robots" if params[:email].present?
     @algorithm = Algorithm.new(params[:algorithm])
     @algorithm.password = params[:algorithm][:password]
     respond_to do |format|
@@ -57,6 +58,7 @@ class AlgorithmsController < ApplicationController
   # PUT /algorithms/1
   # PUT /algorithms/1.xml
   def update
+    raise "Go away robots" if params[:email].present?
     @algorithm = Algorithm.find(params[:id])
     password = params[:algorithm].delete(:current_password)
     respond_to do |format|
@@ -74,13 +76,13 @@ class AlgorithmsController < ApplicationController
 
   # DELETE /algorithms/1
   # DELETE /algorithms/1.xml
-  def destroy
-    @algorithm = Algorithm.find(params[:id])
-    @algorithm.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(algorithms_url) }
-      format.xml  { head :ok }
-    end
-  end
+#  def destroy
+#    @algorithm = Algorithm.find(params[:id])
+#    @algorithm.destroy
+#
+#    respond_to do |format|
+#      format.html { redirect_to(algorithms_url) }
+#      format.xml  { head :ok }
+#    end
+#  end
 end

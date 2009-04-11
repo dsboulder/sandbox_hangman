@@ -9,6 +9,9 @@
     <%= f.label :author, "Author Name" %><br />
     <%= f.text_field :author %>
   </p>
+  <p style="display: none">
+    <%= text_field_tag :email, "" %>
+  </p>
   <% if @algorithm.new_record? %>
     <p>
       <%= f.label :password, "Password (required to edit this algorithm later)" %><br />
