@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Author</th>
     <th>Code</th>
     <th>Games</th>
     <th>Avg. Score</th>
@@ -11,6 +12,7 @@
 <% @algorithms.each do |algorithm| %>
   <tr>
     <td><%=h algorithm.name %></td>
+    <td><%=h algorithm.author %></td>
     <td><code><%=h truncate(algorithm.code, 50) %></code></td>
     <td><%= algorithm.games %></td>
     <td><%= algorithm.games.zero? ? "" : algorithm.score / algorithm.games.to_f %></td>
