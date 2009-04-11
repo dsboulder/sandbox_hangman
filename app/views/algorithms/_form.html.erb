@@ -2,9 +2,24 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "Algorithm Name" %><br />
     <%= f.text_field :name %>
   </p>
+  <p>
+    <%= f.label :author, "Author Name" %><br />
+    <%= f.text_field :author %>
+  </p>
+  <% if @algorithm.new_record? %>
+    <p>
+      <%= f.label :password, "Password (required to edit this algorithm later)" %><br />
+      <%= f.password_field :password %>
+    </p>
+  <% else %>
+    <p>
+      <%= f.label :current_password, "Password" %><br />
+      <%= f.password_field :current_password %>
+    </p>
+  <% end %>
   <p>
     <%= f.label :code %><br />
     <%= f.text_area :code, :class => "codepress rubytm linenumbers-off autocomplete-off", :id => "myCpWindow" %>

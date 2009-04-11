@@ -41,7 +41,7 @@ class AlgorithmsController < ApplicationController
   # POST /algorithms.xml
   def create
     @algorithm = Algorithm.new(params[:algorithm])
-
+    @algorithm.password = params[:algorithm][:password]
     respond_to do |format|
       if @algorithm.save
         flash[:notice] = 'Algorithm was successfully created.'
@@ -58,9 +58,10 @@ class AlgorithmsController < ApplicationController
   # PUT /algorithms/1.xml
   def update
     @algorithm = Algorithm.find(params[:id])
-
+    password = params[:algorithm].delete(:current_password)
     respond_to do |format|
-      if @algorithm.update_attributes(params[:algorithm])
+      flash.now[:error] = "Incorrect password" if password != @algorithm.password
+      if password == @algorithm.password && @algorithm.update_attributes(params[:algorithm])
         flash[:notice] = 'Algorithm was successfully updated.'
         format.html { redirect_to(@algorithm) }
         format.xml  { head :ok }
