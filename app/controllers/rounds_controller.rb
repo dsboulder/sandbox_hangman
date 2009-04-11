@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
   # GET /rounds
   # GET /rounds.xml
   def index
-    @rounds = Round.all
+    @rounds = Round.find(:all, :limit => 50, :order => "id DESC")
 
     respond_to do |format|
       format.html # index.html.erb

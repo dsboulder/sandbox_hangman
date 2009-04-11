@@ -52,3 +52,12 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+
+iframe {
+  background-color: #0C1021;
+}
+
+textarea {
+  width: 80%;
+  height: 200px;
+}
