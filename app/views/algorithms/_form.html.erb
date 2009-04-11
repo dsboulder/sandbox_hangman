@@ -1,0 +1,45 @@
+<% form_for(@algorithm, :html => {:onsubmit => "if(document.getElementById('myCpWindow_cp')) { myCpWindow.toggleEditor()}"}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_area :code, :class => "codepress rubytm linenumbers-off autocomplete-off", :id => "myCpWindow" %>
+  </p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+
+  <h3>Goal</h3>
+  <p>Write an algorithm that guesses the unknown randomly seleted word by guessing one letter at a time.  The fewer wrong guesses, the more points you get.  Guessing more than 8 wrong letters will yield 0 points.</p>
+
+  <h3>API</h3>
+  <ul>
+    <li><code><strong>word()</strong></code> - partially completed word with spaces for missing letters.  Example return value: <code><em>"co f r nc "</em></code></li>
+    <li><code><strong>guesses()</strong></code> - array of all your previous guesses.  Example return value: <code><em>["f", "o", "r", "n", "c", "z"]</em></code></li>
+    <li><code><strong>all_words()</strong></code> - list of all words in the dictionary that can be chosen.  Example return value: <code><em>["another", "apple", "asteroid", ...]</em></code></li>
+    <li><code><strong>guess!(character)</strong></code> - guess a letter.  The character must be a single letter and you can only guess once per iteration.  Example use: <code><em>guess!("e")</em></code></li>
+  </ul>
+
+  <h3>Example Algorithm</h3>
+  <p>The following code guesses sequentially letters 'A' to 'Z'.  It performs very poorly, getting almost no words before using up its wrong guesses:</p>
+  <code>guess!((&apos;a&apos;..&apos;z&apos;).to_a[guesses.length])</code>
+
+  <h3>How it works</h3>
+  <p>
+    The hangman application is written on top of Freaky-freaky-sandbox, a ruby sandboxing gem for ruby.
+    It uses <a href="http://github.com/dsboulder/acts_as_wrapped_class/tree/master">acts_as_wrapped_class</a> and 
+    <a href="">acts_as_runnable_code</a> to help simplify the code.
+    The model structure is as follows:</p>
+  <img src="/images/howitworks.png"/>
+  <p>
+    A background rake task runs an iteration every 10 seconds.
+    When all the algorithms have finished on a given round, a new round is created with a new random word and all algorithms are entered as contestants.
+  </p>
+  <p>
+    For more information, read <a href="http://flouri.sh/2009/4/11/ruby-sandboxing-resources">a complete list of ruby sandboxing resources</a>.
+  </p>
+<% end %>
